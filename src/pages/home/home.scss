@@ -1,3 +1,20 @@
 page-home {
-
+  .button-card {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    color: #ffff;
+    font-size: 2.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+  }
+  h2 {
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  p {
+    color: rgba(255, 255, 255, 0.863);
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+  }
 }

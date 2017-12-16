@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar align-title="center">
+    <ion-title>Events</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-list>
+    <!-- <ion-card *ngFor="let event of events">
+      <img src="{{event.image}}" />
+      <ion-card-content>
+        <ion-card-title>
+          {{event.heading}}
+        </ion-card-title>
+        <p>
+          {{event.description}}
+        </p>
+      </ion-card-content>
+
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='star'></ion-icon>
+            Favorite
+          </button>
+        </ion-col>
+        <ion-col text-center>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='chatbubbles'></ion-icon>
+            Comment
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='share-alt'></ion-icon>
+            Share
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card> -->
+    <ion-card *ngFor="let event of events">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="https://www.hellomagazine.com/imagenes/profiles/hugh-jackman/6020-hugh-jackman.jpg" />
+        </ion-avatar>
+        <h2>Josh Morony</h2>
+        <p>{{event.date}}</p>
+      </ion-item>
+      <img src="{{event.image}}" />
+      <ion-card-content>
+        <ion-card-title>
+          {{event.heading}}
+        </ion-card-title>
+        {{event.description}}
+      </ion-card-content>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>12 Likes</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <ion-icon name="text"></ion-icon>
+            <div>4 Comments</div>
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-note>
+            11h ago
+          </ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+
+</ion-content>
