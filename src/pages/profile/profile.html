@@ -18,30 +18,40 @@
 
     <ion-card-content>
       <img src="https://demo.accesspressthemes.com/unicon/wp-content/uploads/2016/08/dgdfg.jpg" />
-      <h2>Nizamuddin Mohamed</h2>
-      <h3>Member</h3>
+      <h2>{{name}}</h2>
+      <h3>{{userType}}</h3>
     </ion-card-content>
 
     <ion-list>
       <a ion-item>
+        <ion-icon name="contacts" item-left></ion-icon>
+        <p>Family Name</p>
+        <h2>{{familyName}}</h2>
+      </a>
+      <a ion-item>
         <ion-icon name="school" item-left></ion-icon>
         <p>Profession</p>
-        <h2>Software Engineer</h2>
+        <h2>{{profession}}</h2>
       </a>
-      <a href="tel:0543493196" ion-item>
+      <a ion-item>
         <ion-icon name="call" item-left></ion-icon>
         <p>Mobile</p>
-        <h2>0543493196</h2>
+        <h2>{{mobile}}</h2>
       </a>
-      <a href="mailto:webnizam@gmail.com" ion-item>
-        <ion-icon name="mail" item-left></ion-icon>
-        <p>Email</p>
-        <h2>webnizam@gmail.com</h2>
+      <a ion-item>
+        <ion-icon name="globe" item-left></ion-icon>
+        <p>Emirate</p>
+        <h2>{{emirate}}</h2>
+      </a>
+      <a ion-item>
+        <ion-icon name="compass" item-left></ion-icon>
+        <p>Place</p>
+        <h2>{{place}}</h2>
       </a>
       <a ion-item>
         <ion-icon name="calendar" item-left></ion-icon>
         <p>Date of Birth</p>
-        <h2>31st January, 1993</h2>
+        <h2>{{dob}}</h2>
       </a>
     </ion-list>
 

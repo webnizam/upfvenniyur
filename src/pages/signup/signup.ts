@@ -61,7 +61,7 @@ export class SignupPage {
     console.log("ionViewDidLoad SignupPage");
   }
 
-  register(): void {
+  async register() {
     if (this.registerForm.valid) {
       let loading = this.loadingCtrl.create({
         content: "Please wait..."
@@ -102,7 +102,8 @@ export class SignupPage {
             this.storage.set("fam_name", this.result.data.fam_name);
             this.storage.set("emirates", this.result.data.emirates);
             this.storage.set("place", this.result.data.place);
-            
+            this.storage.set("profession", this.result.data.profession);
+
             this.navCtrl.push(TabsPage);
           } else {
             console.log("Error : " + JSON.stringify(this.result));
