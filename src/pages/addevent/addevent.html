@@ -1,0 +1,44 @@
+<!--
+  Generated template for the AddeventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Event</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="background">
+
+  <ion-card class="marginTop">
+    <ion-card-content>
+      <ion-list no-lines>
+        <form [formGroup]="addEventForm" (ngSubmit)="submitEvent(addEventForm.value)">
+          <ion-item>
+            <ion-label floating>Title</ion-label>
+            <ion-input [(ngModel)]="title" formControlName="title" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-textarea rows="5" cols="50" [(ngModel)]="description" formControlName="description" type="text"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Date</ion-label>
+            <ion-input [(ngModel)]="date" formControlName="date" type="date"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Time</ion-label>
+            <ion-input [(ngModel)]="time" formControlName="time" type="time"></ion-input>
+          </ion-item>
+          <button ion-button class="marginTop" block color="primary" type="submit">Submit</button>
+        </form>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

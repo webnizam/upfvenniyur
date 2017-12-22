@@ -8,27 +8,37 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list no-lines>
-        <ion-item>
-          <ion-label floating>Full Name</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Profession</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Mobile Number</ion-label>
-          <ion-input type="tel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Email</ion-label>
-          <ion-input type="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Date of Birth</ion-label>
-          <ion-input type="number"></ion-input>
-        </ion-item>
-        <button ion-button class="marginTop" block color="primary" (click)="register()">Register</button>
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+          <ion-item>
+            <ion-label floating>Full Name</ion-label>
+            <ion-input [(ngModel)]="name" formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Family Name</ion-label>
+            <ion-input [(ngModel)]="fam_name" formControlName="fam_name" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Place</ion-label>
+            <ion-input [(ngModel)]="place" formControlName="place" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Profession</ion-label>
+            <ion-input [(ngModel)]="profession" formControlName="profession" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Mobile Number</ion-label>
+            <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Emirates</ion-label>
+            <ion-input [(ngModel)]="emirates" formControlName="emirates" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Date of Birth (dd/mm/yyyy)</ion-label>
+            <ion-input [(ngModel)]="dob" formControlName="dob" type="text"></ion-input>
+          </ion-item>
+          <button ion-button class="marginTop" block color="primary" type="submit">Register</button>
+        </form>
       </ion-list>
     </ion-card-content>
   </ion-card>

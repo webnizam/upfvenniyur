@@ -6,38 +6,6 @@
 
 <ion-content class="background">
   <ion-list>
-    <!-- <ion-card *ngFor="let event of events">
-      <img src="{{event.image}}" />
-      <ion-card-content>
-        <ion-card-title>
-          {{event.heading}}
-        </ion-card-title>
-        <p>
-          {{event.description}}
-        </p>
-      </ion-card-content>
-
-      <ion-row no-padding>
-        <ion-col>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='star'></ion-icon>
-            Favorite
-          </button>
-        </ion-col>
-        <ion-col text-center>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='chatbubbles'></ion-icon>
-            Comment
-          </button>
-        </ion-col>
-        <ion-col text-right>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='share-alt'></ion-icon>
-            Share
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card> -->
     <ion-card *ngFor="let event of events">
       <ion-item>
         <ion-avatar item-left>
@@ -74,5 +42,11 @@
       </ion-row>
     </ion-card>
   </ion-list>
+
+  <ion-fab right bottom *ngIf="isAdmin">
+    <button ion-fab color="dark" (click)="addEvent()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 
 </ion-content>

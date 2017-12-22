@@ -1,0 +1,20 @@
+page-addevent {
+    .toolbar-title {
+        text-align: left;
+    }
+    ion-card.card {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 10px;
+    }
+    .item {
+        background: rgba(232, 230, 230, 0px);
+    }
+    ion-input,
+    ion-textarea {
+        border-bottom: #fd4d73 solid 1px;
+    }
+    ion-label {
+        font-size: 15px;
+        color: #696969;
+    }
+}

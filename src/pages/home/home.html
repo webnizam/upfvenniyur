@@ -5,27 +5,11 @@
 
   <hr>
 
-  <h2>About Us</h2>
-
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales leo ut risus tincidunt, vitae vestibulum metus sodales.
-    Phasellus lobortis at ipsum ac suscipit. Vestibulum vel vulputate risus, eget tempus arcu. Mauris odio magna, semper
-    et risus quis, tincidunt posuere nunc. Curabitur posuere nunc id aliquam aliquam. Ut et aliquet urna, non pellentesque
-    purus. Sed id est tristique, aliquet est sed, finibus arcu. Vestibulum feugiat, mauris nec rutrum rutrum, magna ante
-    aliquet nunc, nec aliquet tortor mauris feugiat lorem. Donec vulputate, ligula nec sodales dapibus, dolor ligula placerat
-    elit, et scelerisque sapien est a orci. Cras vel sapien lobortis, volutpat nisi quis, pellentesque mi. Nam nisl dui,
-    tempor sed dapibus vel, pharetra quis ante.
-  </p>
-
-  <h2>Agenda</h2>
-
-  <p>
-    Morbi aliquam quis enim sit amet fermentum. Mauris at nulla turpis. Morbi id condimentum lacus. Pellentesque sed sem ut urna
-    iaculis tristique quis eget neque. Integer suscipit ante turpis, ut ullamcorper sapien aliquet at. Vivamus ut tincidunt
-    arcu. Suspendisse porttitor mollis massa in eleifend. Vestibulum lobortis est risus, vitae malesuada diam suscipit eget.
-    Curabitur varius nisl commodo turpis dignissim, nec posuere sem sollicitudin. Donec pretium neque ex, nec ultricies ligula
-    tincidunt scelerisque. Sed nunc ante, rutrum vitae consectetur eu, sodales non ex. In a neque tellus. Sed euismod accumsan
-    sem, ut feugiat nisi eleifend id.
-  </p>
+  <div *ngFor="let item of contents">
+    <h2>{{item.title}}</h2>
+    <p>
+      {{item.descr}}
+    </p>
+  </div>
 
 </ion-content>

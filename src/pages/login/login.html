@@ -8,20 +8,22 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list no-lines>
-        <ion-item>
-          <ion-label floating>Mobile Number</ion-label>
-          <ion-input type="tel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Date of Birth</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-        <ion-item class="marginTop">
-          <p>Forgot password ?
-            <a> Get here</a>
-          </p>
-        </ion-item>
-        <button ion-button class="marginTop" block color="danger" outline (click)="login()">Login</button>
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+          <ion-item>
+            <ion-label floating>Mobile Number</ion-label>
+            <ion-input [(ngModel)]="mobile" formControlName="mobile" type="tel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Date of Birth (dd/mm/yyyy)</ion-label>
+            <ion-input [(ngModel)]="dob" formControlName="dob" type="text"></ion-input>
+          </ion-item>
+          <ion-item class="marginTop">
+            <p>Forgot password ?
+              <a> Get here</a>
+            </p>
+          </ion-item>
+          <button ion-button class="marginTop" type="submit" block color="danger" outline>Login</button>
+        </form>
       </ion-list>
       <div class="marginTop">OR</div>
       <button ion-button class="marginTop" block color="primary" (click)="register()">Register</button>
