@@ -1,10 +1,5 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  LoadingController
-} from "ionic-angular";
+import { NavController, NavParams, LoadingController } from "ionic-angular";
 
 import { SignupPage } from "../signup/signup";
 import { TabsPage } from "../tabs/tabs";
@@ -20,7 +15,6 @@ import { Toast } from "@ionic-native/toast";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
@@ -32,6 +26,7 @@ export class LoginPage {
   dob: string;
   mobile: string;
   loginForm: FormGroup;
+  loading: any;
 
   constructor(
     public navCtrl: NavController,
@@ -53,11 +48,10 @@ export class LoginPage {
   }
 
   async login() {
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
     if (this.loginForm.valid) {
-      let loading = this.loadingCtrl.create({
-        content: "Please wait..."
-      });
-
       loading.present();
       this.data = '{"mob" : "' + this.mobile + '", "dob" : "' + this.dob + '"}';
       console.log(this.data);
@@ -75,7 +69,7 @@ export class LoginPage {
             this.storage.set("fam_name", this.result.data.fam_name);
             this.storage.set("emirates", this.result.data.emirates);
             this.storage.set("place", this.result.data.place);
-            this.storage.set("profession", this.result.data.profession);
+            this.storage.set("prof", this.result.data.prof);
 
             this.navCtrl.push(TabsPage);
           } else {

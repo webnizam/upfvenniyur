@@ -1,18 +1,57 @@
 <!--
-  Generated template for the TeamPage page.
+  Generated template for the ProfilePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>team</ion-title>
+  <ion-navbar align-title="center">
+    <ion-title>Team Profile</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content class="profile grey-bg">
 
-<ion-content padding>
+  <ion-card>
+
+    <ion-card-content>
+      <img src="http://www.isc.hbs.edu/Style%20Library/hbs/images/home/icons/large-circles/business-person-icon.png" />
+      <h2>{{name}}</h2>
+      <h3>{{role}}</h3>
+    </ion-card-content>
+
+    <ion-list>
+
+      <a ion-item>
+        <ion-icon name="contacts" item-left></ion-icon>
+        <p>Family Name</p>
+        <h2>{{familyName}}</h2>
+      </a>
+      <a ion-item>
+        <ion-icon name="school" item-left></ion-icon>
+        <p>Profession</p>
+        <h2>{{profession}}</h2>
+      </a>
+      <a ion-item>
+        <ion-icon name="call" item-left></ion-icon>
+        <p>Mobile</p>
+        <h2>{{mobile}}</h2>
+      </a>
+      <a ion-item>
+        <ion-icon name="globe" item-left></ion-icon>
+        <p>Emirate</p>
+        <h2>{{emirate}}</h2>
+      </a>
+      <a ion-item>
+        <ion-icon name="compass" item-left></ion-icon>
+        <p>Place</p>
+        <h2>{{place}}</h2>
+      </a>
+    </ion-list>
+
+  </ion-card>
+
 
 </ion-content>

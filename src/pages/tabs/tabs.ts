@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { HomePage } from '../home/home'
 import { EventsPage } from '../events/events'
@@ -13,7 +13,6 @@ import { ProfilePage } from '../profile/profile'
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html',

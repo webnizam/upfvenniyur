@@ -44,7 +44,14 @@ export class RestProvider {
 
   addEvent(data): Observable<string> {
     return this.http
-      .post(this.apiUrl + "/addevent.php", data)
+      .post(this.apiUrl + "/add_event.php", data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getEvents(data): Observable<string> {
+    return this.http
+      .post(this.apiUrl + "/get_events.php", data)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -52,6 +59,20 @@ export class RestProvider {
   getHomeContent(data): Observable<string> {
     return this.http
       .post(this.apiUrl + "/home_details.php", data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getCommittee(data): Observable<string> {
+    return this.http
+      .post(this.apiUrl + "/get_committee.php", data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  toggleLike(data): Observable<string> {
+    return this.http
+      .post(this.apiUrl + "/likeEvent.php", data)
       .map(this.extractData)
       .catch(this.handleError);
   }

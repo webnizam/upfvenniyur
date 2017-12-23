@@ -47,6 +47,11 @@ export class HomePage {
     });
   }
 
+  ionViewDidLoad() {
+    let date = new Date().toISOString();
+    console.log(new Date(date));
+  }
+
   openPage(page) {
     this.navCtrl.push(page);
   }

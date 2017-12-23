@@ -1,7 +1,12 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
-import { AddeventPage } from "../addevent/addevent";
+import {
+  NavController,
+  NavParams,
+  LoadingController
+} from "ionic-angular";
+import { PosteventPage } from "../postevent/postevent";
 import { Storage } from "@ionic/storage";
+import { RestProvider } from "../../providers/rest/rest";
 
 /**
  * Generated class for the EventsPage page.
@@ -10,69 +15,29 @@ import { Storage } from "@ionic/storage";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: "page-events",
   templateUrl: "events.html"
 })
 export class EventsPage {
-  public events = [
-    {
-      heading: "General Body",
-      date: "November 20, 2017",
-      image:
-        "https://www.newstatesman.com/sites/all/themes/creative-responsive-theme/images/new_statesman_events.jpg",
-      description:
-        "Images often vary in size, so it is important that they adopt a consistent style throughout your app. Images can easily be added to cards. Adding an image to a card will give the image a constant width, and a variable height. Lists, headers, and other card components can easily be combined with image cards. To add an image to a card, use the following markup:"
-    },
-    {
-      heading: "National Day",
-      date: "December 2, 2017",
-      image:
-        "https://www.souqalmal.com/financial-education/ae-en/uploads/sites/8/2014/11/UAE-National-Day-parade-in-Downtown-Dubai-2.jpg",
-      description:
-        "Images often vary in size, so it is important that they adopt a consistent style throughout your app. Images can easily be added to cards. Adding an image to a card will give the image a constant width, and a variable height. Lists, headers, and other card components can easily be combined with image cards. To add an image to a card, use the following markup:"
-    },
-    {
-      heading: "National Day",
-      date: "December 2, 2017",
-      image:
-        "https://www.souqalmal.com/financial-education/ae-en/uploads/sites/8/2014/11/UAE-National-Day-parade-in-Downtown-Dubai-2.jpg",
-      description:
-        "Images often vary in size, so it is important that they adopt a consistent style throughout your app. Images can easily be added to cards. Adding an image to a card will give the image a constant width, and a variable height. Lists, headers, and other card components can easily be combined with image cards. To add an image to a card, use the following markup:"
-    },
-    {
-      heading: "National Day",
-      date: "December 2, 2017",
-      image:
-        "https://www.souqalmal.com/financial-education/ae-en/uploads/sites/8/2014/11/UAE-National-Day-parade-in-Downtown-Dubai-2.jpg",
-      description:
-        "Images often vary in size, so it is important that they adopt a consistent style throughout your app. Images can easily be added to cards. Adding an image to a card will give the image a constant width, and a variable height. Lists, headers, and other card components can easily be combined with image cards. To add an image to a card, use the following markup:"
-    },
-    {
-      heading: "National Day",
-      date: "December 2, 2017",
-      image:
-        "https://www.souqalmal.com/financial-education/ae-en/uploads/sites/8/2014/11/UAE-National-Day-parade-in-Downtown-Dubai-2.jpg",
-      description:
-        "Images often vary in size, so it is important that they adopt a consistent style throughout your app. Images can easily be added to cards. Adding an image to a card will give the image a constant width, and a variable height. Lists, headers, and other card components can easily be combined with image cards. To add an image to a card, use the following markup:"
-    },
-    {
-      heading: "National Day",
-      date: "December 2, 2017",
-      image:
-        "https://www.souqalmal.com/financial-education/ae-en/uploads/sites/8/2014/11/UAE-National-Day-parade-in-Downtown-Dubai-2.jpg",
-      description:
-        "Images often vary in size, so it is important that they adopt a consistent style throughout your app. Images can easily be added to cards. Adding an image to a card will give the image a constant width, and a variable height. Lists, headers, and other card components can easily be combined with image cards. To add an image to a card, use the following markup:"
-    }
-  ];
+  public events = [];
 
   isAdmin: boolean;
+  userId: string;
+  errorMessage: string;
+  data: string;
+  result: any;
+
+  descending: boolean = false;
+  order: number;
+  column: string = "date";
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public storage: Storage
+    public storage: Storage,
+    public rest: RestProvider,
+    public loadingCtrl: LoadingController
   ) {
     this.storage.get("user_type").then(val => {
       if (val == "admin") {
@@ -81,13 +46,71 @@ export class EventsPage {
         this.isAdmin = false;
       }
     });
+    this.storage.get("id").then(val => {
+      this.userId = val;
+      this.data = '{"userid" : "' + this.userId + '"}';
+      this.loadEvents();
+    });
+  }
+
+  async loadEvents() {
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loading.present();
+    this.rest.getEvents(this.data).subscribe(
+      result => {
+        loading.dismiss();
+        this.result = result;
+        console.log("Result : " + JSON.stringify(this.result));
+        if (this.result.code == "1") {
+          this.events = this.result.data;
+        } else {
+        }
+      },
+      error => {
+        loading.dismiss();
+        this.errorMessage = error;
+      }
+    );
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter EventsPage");
+    this.loadEvents();
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad EventsPage");
+    //this.loadEvents();
   }
 
   addEvent(): void {
-    this.navCtrl.push(AddeventPage);
+    this.navCtrl.push(PosteventPage);
+  }
+
+  parseDate(date): string {
+    return new Date(date).toDateString();
+  }
+
+  toggleLike(id, index): void {
+    console.log(index + " Like Clicked");
+    if (this.events[index].is_like == 1) {
+      this.events[index].is_like = 0;
+      this.events[index].likes = this.events[index].likes - 1;
+    } else {
+      this.events[index].is_like = 1;
+      this.events[index].likes = this.events[index].likes + 1;
+    }
+
+    var likeData =
+      '{"userid" : "' + this.userId + '", "eventId" : "' + id + '"}';
+    console.log(likeData);
+    this.rest.toggleLike(likeData).subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {}
+    );
   }
 }

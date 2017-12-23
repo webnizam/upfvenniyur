@@ -1,10 +1,5 @@
 import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  LoadingController
-} from "ionic-angular";
+import { NavController, NavParams, LoadingController } from "ionic-angular";
 
 import { TabsPage } from "../tabs/tabs";
 import { RestProvider } from "../../providers/rest/rest";
@@ -19,7 +14,6 @@ import { Toast } from "@ionic-native/toast";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: "page-signup",
   templateUrl: "signup.html"
@@ -77,7 +71,7 @@ export class SignupPage {
         this.fam_name +
         '", "place" : "' +
         this.place +
-        '", "profession" : "' +
+        '", "prof" : "' +
         this.profession +
         '", "mob" : "' +
         this.mobile +
@@ -102,7 +96,7 @@ export class SignupPage {
             this.storage.set("fam_name", this.result.data.fam_name);
             this.storage.set("emirates", this.result.data.emirates);
             this.storage.set("place", this.result.data.place);
-            this.storage.set("profession", this.result.data.profession);
+            this.storage.set("prof", this.result.data.prof);
 
             this.navCtrl.push(TabsPage);
           } else {

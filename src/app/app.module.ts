@@ -14,12 +14,14 @@ import { EventsPage } from "../pages/events/events";
 import { CommitteePage } from "../pages/committee/committee";
 import { TabsPage } from "../pages/tabs/tabs";
 import { ProfilePage } from "../pages/profile/profile";
-import { AddeventPage } from "../pages/addevent/addevent";
+import { PosteventPage } from "../pages/postevent/postevent";
+import { TeamPage } from "../pages/team/team";
 import { RestProvider } from "../providers/rest/rest";
 import { IonicStorageModule } from "@ionic/storage";
 import { Toast } from "@ionic-native/toast";
-import { Camera } from '@ionic-native/camera';
-
+import { Camera } from "@ionic-native/camera";
+import { SortPipe } from "../pipes/sort/sort";
+import { DatePicker } from '@ionic-native/date-picker';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { Camera } from '@ionic-native/camera';
     CommitteePage,
     TabsPage,
     ProfilePage,
-    AddeventPage
+    PosteventPage,
+    TeamPage,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { Camera } from '@ionic-native/camera';
     CommitteePage,
     TabsPage,
     ProfilePage,
-    AddeventPage
+    PosteventPage,
+    TeamPage
   ],
   providers: [
     StatusBar,
@@ -57,7 +62,9 @@ import { Camera } from '@ionic-native/camera';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     RestProvider,
     Toast,
-    Camera
+    Camera,
+    SortPipe,
+    DatePicker
   ]
 })
 export class AppModule {}

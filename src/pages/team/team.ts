@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { NavController, NavParams } from "ionic-angular";
 
 /**
  * Generated class for the TeamPage page.
@@ -8,18 +8,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
-  selector: 'page-team',
-  templateUrl: 'team.html',
+  selector: "page-team",
+  templateUrl: "team.html"
 })
 export class TeamPage {
+  profile: any;
+  name: string;
+  userType: string;
+  place: string;
+  mobile: string;
+  emirate: string;
+  profession: string;
+  dob: string;
+  familyName: string;
+  role: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.profile = this.navParams.data;
+    console.log(this.profile);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TeamPage');
+  async ionViewDidLoad() {
+    console.log("ionViewDidLoad TeamPage");
+    this.name = this.profile.name;
+    this.userType = this.profile.user_type;
+    this.place = this.profile.place;
+    this.mobile = this.profile.mob;
+    this.emirate = this.profile.emirates;
+    this.profession = this.profile.prof;
+    this.familyName = this.profile.fam_name;
+    this.role = this.profile.role;
+    this.dob = this.profile.dob;
   }
-
 }

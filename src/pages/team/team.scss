@@ -1,3 +1,37 @@
 page-team {
-
+    .grey-bg {
+        background: #ececec;
+    }
+    .toolbar-title {
+        text-align: left;
+    }
+    .profile {
+        ion-card {
+            margin-top: 100px;
+            overflow: visible;
+            ion-card-content {
+                background-color: map-get($colors, color5);
+                color: #ffffff;
+                text-align: center;
+                padding-bottom: 28px;
+                img {
+                    height: 160px;
+                    width: 160px;
+                    border-radius: 50%;
+                    margin-top: -100px;
+                    border: solid 4px #ffffff;
+                    display: inline;
+                }
+                h2 {
+                    font-size: 2.5rem;
+                    margin-top: 0.5rem;
+                    color: white;
+                }
+                h3 {
+                    font-size: 1.8rem;
+                    color: white;
+                }
+            }
+        }
+    }
 }

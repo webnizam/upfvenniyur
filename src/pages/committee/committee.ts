@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { NavController, NavParams } from "ionic-angular";
+import { RestProvider } from "../../providers/rest/rest";
+import { Storage } from "@ionic/storage";
+import { TeamPage } from "../team/team";
 
 /**
  * Generated class for the CommitteePage page.
@@ -8,25 +11,54 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
-  selector: 'page-committee',
-  templateUrl: 'committee.html',
+  selector: "page-committee",
+  templateUrl: "committee.html"
 })
 export class CommitteePage {
+  result: any;
+  errorMessage: any;
+  data: string;
 
-  public members = [
-    { name: "Alex Mathew", title: "President", picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg" },
-    { name: "John Cooper", title: "Vice President", picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg" },
-    { name: "Rasheed", title: "Secretery", picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg" },
-    { name: "Paul Fernadez", title: "Treasurer", picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg" },
-  ]
+  public members = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public rest: RestProvider,
+    private storage: Storage
+  ) {
+    this.storage.get("id").then(val => {
+      this.data = '{"userid" :"' + val + '"}';
+      this.loadMembers();
+    });
+  }
+
+  loadMembers(): void {
+    this.rest.getCommittee(this.data).subscribe(
+      result => {
+        this.result = result;
+        if (this.result.code == "1") {
+          console.log(this.result);
+          this.members = this.result.data;
+        }
+      },
+      error => {
+        this.errorMessage = error;
+      }
+    );
+  }
+
+  openPage(member): void {
+    this.navCtrl.push(TeamPage, member);
+  }
+
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter EventsPage");
+    this.loadMembers();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommitteePage');
+    console.log("ionViewDidLoad CommitteePage");
   }
-
 }

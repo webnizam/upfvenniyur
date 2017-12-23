@@ -12,12 +12,12 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let member of members">
+    <button ion-item *ngFor="let member of members" (click) = "openPage(member)">
       <ion-avatar item-left>
-        <img src="{{member.picture}}" />
+        <img src="http://download.seaicons.com/icons/paomedia/small-n-flat/128/profile-icon.png" />
       </ion-avatar>
       <h2>{{member.name}}</h2>
-      <p>{{member.title}}</p>
+      <p>{{member.role}}</p>
     </button>
   </ion-list>
 </ion-content>

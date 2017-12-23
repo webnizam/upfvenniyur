@@ -6,26 +6,28 @@
 
 <ion-content class="background">
   <ion-list>
-    <ion-card *ngFor="let event of events">
+    <ion-card *ngFor="let event of events | sort: {property: column, order: order};let i = index">
       <ion-item>
         <ion-avatar item-left>
-          <img src="https://www.hellomagazine.com/imagenes/profiles/hugh-jackman/6020-hugh-jackman.jpg" />
+          <img src="http://download.seaicons.com/icons/paomedia/small-n-flat/128/profile-icon.png" />
         </ion-avatar>
-        <h2>Josh Morony</h2>
+        <h2>{{event.posted_by}}</h2>
         <p>{{event.date}}</p>
       </ion-item>
-      <img src="{{event.image}}" />
+      <img *ngIf="event.image" src="{{event.image}}" />
       <ion-card-content>
         <ion-card-title>
-          {{event.heading}}
+          {{event.title}}
         </ion-card-title>
-        {{event.description}}
+        <span style="white-space: pre-line">
+          {{event.descr}}
+        </span>
       </ion-card-content>
       <ion-row>
         <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>12 Likes</div>
+          <button ion-button icon-left clear small (click)="toggleLike(event.id, i)">
+            <ion-icon [name]="event.is_like == 1 ? 'ios-thumbs-up' : 'ios-thumbs-up-outline'"></ion-icon>
+            <div>{{event.likes}} Likes</div>
           </button>
         </ion-col>
         <ion-col>
@@ -36,7 +38,7 @@
         </ion-col>
         <ion-col center text-center>
           <ion-note>
-            11h ago
+            {{parseDate(event.post_date)}}
           </ion-note>
         </ion-col>
       </ion-row>

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams } from "ionic-angular";
 import { Storage } from "@ionic/storage";
 
 /**
@@ -9,7 +9,6 @@ import { Storage } from "@ionic/storage";
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: "page-profile",
   templateUrl: "profile.html"
@@ -43,10 +42,10 @@ export class ProfilePage {
       this.userType = this.capitalizeFirstLetter(val);
       console.log(val);
     });
-    // this.storage.get("profession").then(val => {
-    //   this.profession = this.capitalizeFirstLetter(val);
-    //   console.log(val);
-    // });
+    this.storage.get("prof").then(val => {
+      this.profession = this.capitalizeFirstLetter(val);
+      console.log(val);
+    });
     this.storage.get("emirates").then(val => {
       this.emirate = this.capitalizeFirstLetter(val);
       console.log(val);
